@@ -124,7 +124,7 @@
         
         /* FALLING PETALS */
         .falling-petals { position: fixed; width: 100%; height: 100%; pointer-events: none; z-index: 3; }
-        .petal {
+        .petal { will-change: transform, opacity;
             position: absolute; font-size: 1.5rem; animation: petalFall 10s linear infinite; opacity: 0;
         }
         @keyframes petalFall {
@@ -536,7 +536,7 @@
         
         /* FLOATING ELEMENTS */
         .floating-elements { position: fixed; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
-        .floating-heart {
+        .floating-heart { will-change: transform, opacity;
             position: absolute; font-size: clamp(1.2rem, 2vw, 2rem);
             animation: floatHeart 15s infinite; opacity: 0;
         }
@@ -546,6 +546,14 @@
             90% { opacity: 0.7; transform: translateY(10vh) rotate(315deg) scale(1); }
             100% { transform: translateY(-10vh) rotate(360deg) scale(0); opacity: 0; }
         }
+        
+        /* CREATOR SIGNATURE */
+        .creator {
+            position: fixed; bottom: 15px; right: 20px; font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.3); font-family: 'Cinzel', sans-serif;
+            letter-spacing: 1px; z-index: 100001; opacity: 0.6; transition: opacity 0.3s;
+        }
+        .creator:hover { opacity: 1; }
         
         /* RESPONSIVE */
         @media (max-width: 768px) {
@@ -565,6 +573,7 @@
             .love-letter { padding: 60px 30px; }
             .buttons-container { flex-direction: column; gap: 20px; }
             .valentine-btn { padding: 20px 60px; font-size: 1.5rem; }
+            .creator { bottom: 10px; right: 15px; font-size: 0.7rem; }
         }
     </style>
 </head>
@@ -619,7 +628,7 @@
     <div class="container">
         <!-- HERO -->
         <section class="hero">
-            <h1>You Are My Universe - Shraddha</h1>
+            <h1>You Are My Universe</h1>
             <p class="subtitle">In infinite space, you are my one constant</p>
             <div class="scroll-indicator">↓</div>
         </section>
@@ -804,7 +813,7 @@
             document.getElementById('shootingStars').appendChild(star);
             setTimeout(() => star.remove(), 3000);
         }
-        setInterval(createShootingStar, 3000);
+        setInterval(createShootingStar, 5000);
         for (let i = 0; i < 3; i++) setTimeout(createShootingStar, i * 1000);
         
         // FALLING PETALS
@@ -819,8 +828,8 @@
             document.getElementById('fallingPetals').appendChild(petal);
             setTimeout(() => petal.remove(), 15000);
         }
-        for (let i = 0; i < 20; i++) setTimeout(createPetal, i * 500);
-        setInterval(createPetal, 2000);
+        for (let i = 0; i < 10; i++) setTimeout(createPetal, i * 500);
+        setInterval(createPetal, 3000);
         
         // FLOATING HEARTS
         function createFloatingHeart() {
@@ -834,8 +843,8 @@
             document.getElementById('floatingElements').appendChild(heart);
             setTimeout(() => heart.remove(), 20000);
         }
-        for (let i = 0; i < 20; i++) setTimeout(createFloatingHeart, i * 800);
-        setInterval(createFloatingHeart, 2000);
+        for (let i = 0; i < 10; i++) setTimeout(createFloatingHeart, i * 800);
+        setInterval(createFloatingHeart, 3000);
         
         // GALLERY
         const gallery = document.getElementById('gallery');
@@ -922,14 +931,14 @@
             if (navigator.vibrate) navigator.vibrate([100, 50, 100, 50, 100]);
             
             // FIREWORKS
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 50; i++) {
                 setTimeout(() => createFirework(), i * 50);
             }
             const fireworkInterval = setInterval(createFirework, 100);
             setTimeout(() => clearInterval(fireworkInterval), 5000);
             
             // CONFETTI
-            for (let i = 0; i < 200; i++) {
+            for (let i = 0; i < 100; i++) {
                 setTimeout(() => createConfetti(), i * 15);
             }
             const confettiInterval = setInterval(createConfetti, 80);
@@ -1009,5 +1018,6 @@
             setTimeout(() => confetti.remove(), 4000);
         }
     </script>
+    <div class="creator">Created by — Piyush</div>
 </body>
 </html>
